@@ -4,6 +4,8 @@ const btnTesoura = document.querySelector("#tesoura")
 const btnRestart = document.querySelector("#restart")
 const scorePlayer = document.querySelector("#my-score")
 const scoreOpponent = document.querySelector("#opponent-score")
+const result = document.querySelector("h1")
+
 btnRestart.style.display = "none";
 let playerHand = ""
 let opponentHand = ""
@@ -14,49 +16,49 @@ function gameLogic(a, b) {
     switch (a) {
         case "pedra":
             if (b == "papel") {
-                console.log("Você Perdeu!")
+                result.innerHTML = "Você Perdeu!"
                 opponentScore++
             }
 
             if (b == "tesoura") {
-                console.log("Você Ganhou!")
+                result.innerHTML = "Você Ganhou!"
                 playerScore++
             }
 
             if (a == b) {
-                console.log("Empate!")
+                result.innerHTML = "Empate!"
             }
         break;
 
         case "papel":
             if (b == "pedra") {
-                console.log("Você Ganhou!")
+                result.innerHTML = "Você Ganhou!"
                 playerScore++
             }
 
             if (b == "tesoura") {
-                console.log("Você Perdeu!")
+                result.innerHTML = "Você Perdeu!"
                 opponentScore++
             }
 
             if (a == b) {
-                console.log("Empate!")
+                result.innerHTML = "Empate!"
             }
         break;
 
         case "tesoura":
             if (b == "pedra") {
-                console.log("Você Perdeu!")
+                result.innerHTML = "Você Perdeu!"
                 opponentScore++
             }
 
             if (b == "papel") {
-                console.log("Você Ganhou!")
+                result.innerHTML = "Você Ganhou!"
                 playerScore++
             }
 
             if (a == b) {
-                console.log("Empate!")
+                result.innerHTML = "Empate!"
             }
         break;
 
@@ -93,7 +95,7 @@ function opponentTurn() {
     gameLogic(playerHand, opponentHand)
 }
 
-const restartGame = () => {btnRestart.style.display = "none"; btnPedra.disabled = false; btnPapel.disabled = false; btnTesoura.disabled = false;}
+const restartGame = () => {btnRestart.style.display = "none"; result.innerHTML = "Jokenpô"; btnPedra.disabled = false; btnPapel.disabled = false; btnTesoura.disabled = false;}
 
 const playerTurn = (hand) => {playerHand = hand; btnPedra.disabled = true; btnPapel.disabled = true; btnTesoura.disabled = true; opponentTurn()}
 
