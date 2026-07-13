@@ -38,6 +38,9 @@ h1 {
 }
 
 #botoes {
+    display: flex;
+    flex-direction: row;
+    gap: 35.5px;
     margin: 0 auto 50px;
 }
 
@@ -50,7 +53,6 @@ button {
     /*Dimensões*/
     width: 110px;
     height: 150px;
-    margin: 0 15px;
     /*Borda*/
     border: none;
     border-radius: 10px;
