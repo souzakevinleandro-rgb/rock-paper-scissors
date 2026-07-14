@@ -10,9 +10,14 @@ let playerHand = ""
 let opponentHand = ""
 let playerScore = 0
 let opponentScore = 0
+const GAME_OPTIONS = {
+    ROCK: 'pedra',
+    PAPER: 'papel',
+    SCISSORS: 'tesoura'
+}
 
 function gameLogic(a, b) {
-    if( (a == 'pedra' && b == 'papel') || (a == 'papel' && b == 'pedra') || (a == 'tesoura' && b == 'papel') ) {
+    if( (a == GAME_OPTIONS.ROCK && b == GAME_OPTIONS.SCISSORS) || (a == GAME_OPTIONS.PAPER && b == GAME_OPTIONS.ROCK) || (a == GAME_OPTIONS.SCISSORS && b == GAME_OPTIONS.PAPER) ) {
         result.innerHTML = "Você Ganhou!"
         playerScore++
         scorePlayer.innerHTML = ` ${playerScore}`
@@ -29,7 +34,7 @@ function gameLogic(a, b) {
 }
 
 function opponentTurn() {
-    let opcoes = ['pedra', 'papel', 'tesoura']
+    let opcoes = [GAME_OPTIONS.ROCK, GAME_OPTIONS.PAPER, GAME_OPTIONS.SCISSORS]
     let aleatorio = Math.floor(Math.random() * (2 - 0 + 1)) + 0
     opponentHand = opcoes[aleatorio]
     alert(`Player: ${playerHand} \n Opponent: ${opponentHand}`)
