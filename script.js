@@ -1,11 +1,10 @@
-const btnPedra = document.querySelector("#pedra")
-const btnPapel = document.querySelector("#papel")
-const btnTesoura = document.querySelector("#tesoura")
+const btnR = document.querySelector("#pedra")
+const btnP = document.querySelector("#papel")
+const btnS = document.querySelector("#tesoura")
 const btnRestart = document.querySelector("#restart")
 const scorePlayer = document.querySelector("#my-score")
 const scoreOpponent = document.querySelector("#opponent-score")
 const result = document.querySelector("h1")
-
 btnRestart.style.display = "none";
 let playerHand = ""
 let opponentHand = ""
@@ -13,58 +12,16 @@ let playerScore = 0
 let opponentScore = 0
 
 function gameLogic(a, b) {
-    switch (a) {
-        case "pedra":
-            if (b == "papel") {
-                result.innerHTML = "Você Perdeu!"
-                opponentScore++
-            }
-
-            if (b == "tesoura") {
-                result.innerHTML = "Você Ganhou!"
-                playerScore++
-            }
-
-            if (a == b) {
-                result.innerHTML = "Empate!"
-            }
-        break;
-
-        case "papel":
-            if (b == "pedra") {
-                result.innerHTML = "Você Ganhou!"
-                playerScore++
-            }
-
-            if (b == "tesoura") {
-                result.innerHTML = "Você Perdeu!"
-                opponentScore++
-            }
-
-            if (a == b) {
-                result.innerHTML = "Empate!"
-            }
-        break;
-
-        case "tesoura":
-            if (b == "pedra") {
-                result.innerHTML = "Você Perdeu!"
-                opponentScore++
-            }
-
-            if (b == "papel") {
-                result.innerHTML = "Você Ganhou!"
-                playerScore++
-            }
-
-            if (a == b) {
-                result.innerHTML = "Empate!"
-            }
-        break;
-
-        default:
-            console.log("ERRO!")
-        break;
+    if( (a == 'pedra' && b == 'papel') || (a == 'papel' && b == 'pedra') || (a == 'tesoura' && b == 'papel') ) {
+        result.innerHTML = "Você Ganhou!"
+        playerScore++
+        scorePlayer.innerHTML = ` ${playerScore}`
+    } else if (a == b) {
+        result.innerHTML = "Empate!"
+    } else {
+        result.innerHTML = "Você Perdeu!"
+        opponentScore++
+        opponentScore.innerHTML = ` ${opponentScore}`
     }
     scorePlayer.innerHTML = ` ${playerScore}`
     scoreOpponent.innerHTML = ` ${opponentScore}`
@@ -72,34 +29,25 @@ function gameLogic(a, b) {
 }
 
 function opponentTurn() {
-    opponentHand = Math.floor(Math.random() * (2 - 0 + 1)) + 0
-
-    switch (opponentHand) {
-        case 0:
-            opponentHand = "pedra"
-        break;
-
-        case 1:
-            opponentHand = "papel"
-        break;
-
-        case 2:
-            opponentHand = "tesoura"
-        break;
-
-        default:
-            console.log("ERRO!")
-        break;
-}
-    alert(`Seu oponente escolheu: ${opponentHand}`)
+    let opcoes = ['pedra', 'papel', 'tesoura']
+    let aleatorio = Math.floor(Math.random() * (2 - 0 + 1)) + 0
+    opponentHand = opcoes[aleatorio]
+    alert(`Player: ${playerHand} \n Opponent: ${opponentHand}`)
     gameLogic(playerHand, opponentHand)
 }
 
-const restartGame = () => {btnRestart.style.display = "none"; result.innerHTML = "Jokenpô"; btnPedra.disabled = false; btnPapel.disabled = false; btnTesoura.disabled = false;}
+function disBTN() {
+    btnR.disabled = true;
+    btnP.disabled = true;
+    btnS.disabled = true;
+}
 
-const playerTurn = (hand) => {playerHand = hand; btnPedra.disabled = true; btnPapel.disabled = true; btnTesoura.disabled = true; opponentTurn()}
+function enBTN() {
+    btnR.disabled = false;
+    btnP.disabled = false;
+    btnS.disabled = false;
+}
 
-btnPedra.addEventListener("click", () => playerTurn(btnPedra.id))
-btnPapel.addEventListener("click", () => playerTurn(btnPapel.id))
-btnTesoura.addEventListener("click", () => playerTurn(btnTesoura.id))
-btnRestart.addEventListener("click", restartGame)
+const restartGame = () => {btnRestart.style.display = "none"; result.innerHTML = "Jokenpô"; enBTN();}
+const playerTurn = (hand) => {playerHand = hand; opponentTurn(); disBTN()}
+

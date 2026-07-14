@@ -14,15 +14,15 @@
     <main>
         <h1>Jokenpô</h1>
         <div id="botoes">
-            <button id="pedra">✊</button>
-            <button id="papel">✋</button>
-            <button id="tesoura">✌️</button>
+            <button id="pedra" onclick="playerTurn('pedra')">✊</button>
+            <button id="papel" onclick="playerTurn('papel')">✋</button>
+            <button id="tesoura" onclick="playerTurn('tesoura')">✌️</button>
         </div>
         <div id="texto">
             <p id="texto1">Sua Pontuação:<span id="my-score"> 0</span></p>
             <p id="texto2">Pontuação do Oponente:<span id="opponent-score"> 0</span></p>
         </div>
-        <button id="restart">Jogar Novamente</button>
+        <button id="restart" onclick="restartGame()">Jogar Novamente</button>
     </main>
 </body>
 <script src="./script.js"></script>
